@@ -1,0 +1,105 @@
+[gd_scene load_steps=14 format=3 uid="uid://by5sg0otnpldl"]
+
+[ext_resource type="Script" path="res://characters/player/player.gd" id="1_r0x38"]
+[ext_resource type="PackedScene" uid="uid://b4xwt3a4g1vck" path="res://weapons/bullet.tscn" id="2_gpguy"]
+[ext_resource type="Texture2D" uid="uid://dbqdofyexi7nm" path="res://resource/top-down-shooter/PNG/Hitman 1/hitman1_hold.png" id="3_86oeb"]
+[ext_resource type="Texture2D" uid="uid://csaqcoscmxno6" path="res://resource/top-down-shooter/PNG/Hitman 1/hitman1_hold2.png" id="3_h2cs1"]
+[ext_resource type="Texture2D" uid="uid://bhfjywi3nooyq" path="res://resource/top-down-shooter/PNG/Hitman 1/hitman1_dead2.png" id="5_1qdve"]
+[ext_resource type="Texture2D" uid="uid://ba5hcu3m4qlol" path="res://resource/top-down-shooter/PNG/Hitman 1/hitman1_stand.png" id="5_k8jto"]
+[ext_resource type="PackedScene" uid="uid://cwtgn20eohfky" path="res://characters/health.tscn" id="7_m8i4n"]
+[ext_resource type="PackedScene" uid="uid://c8ublt73p1xgp" path="res://weapons/weapons.tscn" id="8_5800m"]
+[ext_resource type="Texture2D" uid="uid://bhao4h2gnukfq" path="res://resource/top-down-shooter/PNG/Hitman 1/hitman1_block.png" id="8_ep7v0"]
+[ext_resource type="PackedScene" uid="uid://dqpx74c4lgdsc" path="res://characters/team.tscn" id="10_y05jr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_86si2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_h2cs1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_86oeb")
+}],
+"loop": true,
+"name": &"aim",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_ep7v0")
+}],
+"loop": true,
+"name": &"block",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_1qdve")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_k8jto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_86oeb")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_k8jto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_86oeb")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wb50w"]
+size = Vector2(36.6667, 44)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bsf5m"]
+radius = 46.1736
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_r0x38")
+speed = 200
+bullet_scene = ExtResource("2_gpguy")
+
+[node name="Character" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_86si2")
+animation = &"dead"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.333334, 0)
+shape = SubResource("RectangleShape2D_wb50w")
+
+[node name="Health" parent="." instance=ExtResource("7_m8i4n")]
+
+[node name="Weapons" parent="." instance=ExtResource("8_5800m")]
+position = Vector2(3.33333, 3.33333)
+
+[node name="Team" parent="." instance=ExtResource("10_y05jr")]
+team = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="InteractionComponents" type="Node2D" parent="."]
+
+[node name="InteractionLabel" type="Label" parent="InteractionComponents"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="InteractionArea" type="Area2D" parent="InteractionComponents"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionComponents/InteractionArea"]
+shape = SubResource("CircleShape2D_bsf5m")

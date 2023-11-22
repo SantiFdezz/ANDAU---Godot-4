@@ -1,0 +1,203 @@
+[gd_scene load_steps=14 format=3 uid="uid://cq6kbrtcqrhfp"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_8bgcp"]
+[ext_resource type="PackedScene" uid="uid://by5sg0otnpldl" path="res://characters/player/player.tscn" id="2_8p3uf"]
+[ext_resource type="PackedScene" uid="uid://bfmqjegdnj4lp" path="res://zones/world.tscn" id="2_qaey3"]
+[ext_resource type="PackedScene" uid="uid://b4xwt3a4g1vck" path="res://weapons/bullet.tscn" id="3_6fwiw"]
+[ext_resource type="Script" path="res://zones/capturable_base_container.gd" id="3_7lvpp"]
+[ext_resource type="PackedScene" uid="uid://fp7xtsd3obvy" path="res://characters/AI/actors/actor.tscn" id="3_81i3a"]
+[ext_resource type="PackedScene" uid="uid://cn6l2jp8wv5cs" path="res://characters/AI/actors/ally.tscn" id="5_hr13c"]
+[ext_resource type="Script" path="res://characters/AI/mapAI.gd" id="5_jnau5"]
+[ext_resource type="Script" path="res://menu/control.gd" id="7_7sgpk"]
+[ext_resource type="PackedScene" uid="uid://dqpx74c4lgdsc" path="res://characters/team.tscn" id="8_23lcp"]
+[ext_resource type="Texture2D" uid="uid://c1v6b12y8cym5" path="res://resource/top-down-shooter/Sample.png" id="8_gdnjf"]
+[ext_resource type="FontFile" uid="uid://4owxjany8n7h" path="res://resource/fonts/ARCADECLASSIC.TTF" id="9_8gvyi"]
+[ext_resource type="PackedScene" uid="uid://coar4qlhqascg" path="res://zones/capturable_bases.tscn" id="10_4b0ht"]
+
+[node name="Main" type="Node2D"]
+position = Vector2(22, -10)
+script = ExtResource("1_8bgcp")
+
+[node name="World" parent="." instance=ExtResource("2_qaey3")]
+
+[node name="CapturableBaseContainer" type="Node2D" parent="."]
+script = ExtResource("3_7lvpp")
+
+[node name="CapturableBases" parent="CapturableBaseContainer" instance=ExtResource("10_4b0ht")]
+position = Vector2(8.37729, -5.31769)
+
+[node name="CapturableBases3" parent="CapturableBaseContainer" instance=ExtResource("10_4b0ht")]
+position = Vector2(70.343, -1083.93)
+
+[node name="CapturableBases2" parent="CapturableBaseContainer" instance=ExtResource("10_4b0ht")]
+position = Vector2(895.089, -320.687)
+
+[node name="Bullet" parent="." instance=ExtResource("3_6fwiw")]
+position = Vector2(-6, 29)
+speed = 750
+
+[node name="AllyMapAI" type="Node2D" parent="."]
+script = ExtResource("5_jnau5")
+base_capture_start_order = null
+
+[node name="Ally" parent="AllyMapAI" instance=ExtResource("5_hr13c")]
+position = Vector2(351.533, -297.472)
+
+[node name="Ally2" parent="AllyMapAI" instance=ExtResource("5_hr13c")]
+position = Vector2(194.557, -532.935)
+
+[node name="Team" parent="AllyMapAI" instance=ExtResource("8_23lcp")]
+team = 1
+
+[node name="EnemyMapAI" type="Node2D" parent="."]
+script = ExtResource("5_jnau5")
+base_capture_start_order = 1
+
+[node name="Enemy" parent="EnemyMapAI" instance=ExtResource("3_81i3a")]
+position = Vector2(727.615, 39.7531)
+rotation = 2.9104
+
+[node name="Enemy3" parent="EnemyMapAI" instance=ExtResource("3_81i3a")]
+position = Vector2(773, 402.83)
+rotation = 2.9104
+
+[node name="Enemy2" parent="EnemyMapAI" instance=ExtResource("3_81i3a")]
+position = Vector2(73, 136)
+
+[node name="Team" parent="EnemyMapAI" instance=ExtResource("8_23lcp")]
+team = 2
+
+[node name="Player" parent="." instance=ExtResource("2_8p3uf")]
+position = Vector2(1139.02, -61.0806)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Main_menu" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 22.0
+offset_top = -10.0
+offset_right = 62.0
+offset_bottom = 30.0
+script = ExtResource("7_7sgpk")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Main_menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.575
+anchor_top = 0.25
+anchor_right = 25.05
+anchor_bottom = 15.275
+offset_top = 1.0
+offset_right = 1.99994
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Main_menu/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("8_gdnjf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Main_menu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 70
+
+[node name="Separator" type="Control" parent="CanvasLayer/Main_menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Main_menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.678431, 0.121569, 0.0588235, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 8
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("9_8gvyi")
+theme_override_font_sizes/font_size = 49
+text = "A   NORMAL  DAY   AT   USA"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Main_menu/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Main_menu/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="separator2" type="Control" parent="CanvasLayer/Main_menu/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="CanvasLayer/Main_menu/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_8gvyi")
+theme_override_font_sizes/font_size = 22
+text = "PLAY"
+
+[node name="separator3" type="Control" parent="CanvasLayer/Main_menu/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Options" type="Button" parent="CanvasLayer/Main_menu/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_8gvyi")
+theme_override_font_sizes/font_size = 22
+text = "OPTIONS"
+
+[node name="separator4" type="Control" parent="CanvasLayer/Main_menu/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/Main_menu/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_8gvyi")
+theme_override_font_sizes/font_size = 22
+text = "QUIT"
+
+[node name="Options_menu" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -470.0
+offset_top = -290.0
+offset_right = -470.0
+offset_bottom = -290.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Options_menu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Video" type="Button" parent="CanvasLayer/Options_menu/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Audio" type="Button" parent="CanvasLayer/Options_menu/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Back" type="Button" parent="CanvasLayer/Options_menu"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -31.0
+offset_right = 25.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "BACK"
+
+[connection signal="pressed" from="CanvasLayer/Main_menu/MarginContainer/HBoxContainer/VBoxContainer/Play" to="CanvasLayer/Main_menu" method="_on_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/Main_menu/MarginContainer/HBoxContainer/VBoxContainer/Options" to="CanvasLayer/Main_menu" method="_on_options_pressed"]
+[connection signal="pressed" from="CanvasLayer/Main_menu/MarginContainer/HBoxContainer/VBoxContainer/Button" to="CanvasLayer/Main_menu" method="_on_button_pressed"]

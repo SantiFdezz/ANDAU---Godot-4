@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://t2x4afphbyft"]
+
+[ext_resource type="Texture2D" uid="uid://delrfx36su4db" path="res://resource/top-down-shooter/PNG/Tiles/tile_129.png" id="1_olcyc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a6q2v"]
+size = Vector2(50.5679, 50.9424)
+
+[node name="Box" type="Sprite2D"]
+position = Vector2(16.856, 4.49493)
+texture = ExtResource("1_olcyc")
+metadata/_edit_group_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.324554, 0.206816)
+shape = SubResource("RectangleShape2D_a6q2v")

@@ -1,0 +1,106 @@
+[gd_scene load_steps=15 format=3 uid="uid://cn6l2jp8wv5cs"]
+
+[ext_resource type="Script" path="res://characters/AI/actors/actor.gd" id="1_1inhk"]
+[ext_resource type="Texture2D" uid="uid://b8fs3hvbrqoug" path="res://resource/top-down-shooter/PNG/Man Blue/manBlue_gun.png" id="2_3if6e"]
+[ext_resource type="Texture2D" uid="uid://c6e5w6o372b5v" path="res://resource/top-down-shooter/PNG/Man Blue/manBlue_stand.png" id="3_cxtfb"]
+[ext_resource type="Texture2D" uid="uid://b1qecdol5g8g" path="res://resource/top-down-shooter/PNG/Man Blue/manBlue_hold.png" id="4_080i7"]
+[ext_resource type="PackedScene" uid="uid://cwtgn20eohfky" path="res://characters/health.tscn" id="5_l1xbn"]
+[ext_resource type="PackedScene" uid="uid://c8ublt73p1xgp" path="res://weapons/weapons.tscn" id="6_822dp"]
+[ext_resource type="Script" path="res://characters/AI/AI.gd" id="7_vnhbs"]
+[ext_resource type="PackedScene" uid="uid://dqpx74c4lgdsc" path="res://characters/team.tscn" id="8_jucsc"]
+[ext_resource type="Texture2D" uid="uid://bhfjywi3nooyq" path="res://resource/top-down-shooter/PNG/Hitman 1/hitman1_dead2.png" id="9_8u66x"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_86si2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3if6e")
+}],
+"loop": true,
+"name": &"aim",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_cxtfb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_080i7")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wb50w"]
+size = Vector2(50, 44)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8cpyk"]
+radius = 160.716
+
+[sub_resource type="Animation" id="Animation_prrk8"]
+resource_name = "dead"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeadAnimation/Dead:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ptmsp"]
+_data = {
+"dead": SubResource("Animation_prrk8")
+}
+
+[node name="Ally" type="CharacterBody2D" groups=["enemy"]]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_1inhk")
+metadata/_edit_group_ = true
+
+[node name="Character" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_86si2")
+animation = &"aim"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wb50w")
+
+[node name="Health" parent="." instance=ExtResource("5_l1xbn")]
+
+[node name="Weapons" parent="." instance=ExtResource("6_822dp")]
+position = Vector2(4, 0)
+
+[node name="AI" type="Node2D" parent="."]
+script = ExtResource("7_vnhbs")
+
+[node name="DetectionZone" type="Area2D" parent="AI"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AI/DetectionZone"]
+position = Vector2(48, 0)
+shape = SubResource("CircleShape2D_8cpyk")
+
+[node name="PatrolTimer" type="Timer" parent="AI"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Team" parent="." instance=ExtResource("8_jucsc")]
+team = 1
+
+[node name="DeadAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ptmsp")
+}
+
+[node name="Dead" type="Sprite2D" parent="DeadAnimation"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("9_8u66x")
+
+[connection signal="body_entered" from="AI/DetectionZone" to="AI" method="_on_DetectionZoneBodyEntered"]
+[connection signal="body_exited" from="AI/DetectionZone" to="AI" method="_on_DetectionZoneBodyExited"]
+[connection signal="timeout" from="AI/PatrolTimer" to="AI" method="_on_patrol_timer_timeout"]

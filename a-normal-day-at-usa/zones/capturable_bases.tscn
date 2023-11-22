@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://coar4qlhqascg"]
+
+[ext_resource type="Script" path="res://zones/capturable_bases.gd" id="1_o03wa"]
+[ext_resource type="Texture2D" uid="uid://y33ocd2g1wft" path="res://resource/objects/flag_a.png" id="2_tsmdn"]
+[ext_resource type="PackedScene" uid="uid://dqpx74c4lgdsc" path="res://characters/team.tscn" id="3_uu6x1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtjve"]
+size = Vector2(384.234, 256.971)
+
+[node name="CapturableBases" type="Area2D"]
+position = Vector2(417.085, -317.859)
+script = ExtResource("1_o03wa")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(255.837, 771.191)
+shape = SubResource("RectangleShape2D_gtjve")
+
+[node name="Flag" type="Sprite2D" parent="."]
+position = Vector2(278.808, 770.903)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_tsmdn")
+
+[node name="Team" parent="." instance=ExtResource("3_uu6x1")]
+
+[node name="CaptureTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_CapturableBase_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_CapturableBase_body_exited"]
+[connection signal="timeout" from="CaptureTimer" to="." method="_on_capture_timer_timeout"]

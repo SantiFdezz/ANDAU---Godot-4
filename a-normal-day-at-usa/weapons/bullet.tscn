@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4xwt3a4g1vck"]
+
+[ext_resource type="Script" path="res://weapons/bullet.gd" id="1_0abrs"]
+[ext_resource type="Texture2D" uid="uid://dlhdphq4budj4" path="res://resource/objects/ammo-pistol-bullet-32px.png" id="2_crxhx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bq4pj"]
+size = Vector2(15, 5)
+
+[node name="Bullet" type="Area2D"]
+position = Vector2(18, 19)
+script = ExtResource("1_0abrs")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+rotation = 1.5708
+texture = ExtResource("2_crxhx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bq4pj")
+
+[node name="KillCounter" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
