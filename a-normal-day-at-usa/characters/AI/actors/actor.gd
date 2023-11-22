@@ -44,7 +44,6 @@ func hitted():
 		#emit_signal("died")
 		died.emit()
 		queue_free()
-		## cambia script 
 
 func get_team() -> int:
 	return team.team

@@ -100,5 +100,3 @@ func _on_weapons_out_of_ammo():
 	weapon.start_reload()
 
 
-func _on_engaged_timer_timeout():
-		set_state(State.PATROL)

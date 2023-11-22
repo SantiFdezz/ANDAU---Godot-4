@@ -1,6 +1,8 @@
 extends Node2D
 class_name World
 
+@onready var capturable_base_container = $CapturableBaseContainer
+@onready var map_ai = $MapAI
 @onready var tile_map: TileMap = $Map
 const Player = preload("res://characters/player/player.tscn")
 var roof_layer  = 5
@@ -8,12 +10,18 @@ var underground_layer = -5
 var faded : bool = false
 var darkfade_custom_data = "dark_animation_fade"
 @onready var player_respawn = $PlayerRespawnPoint
+@onready var enemy_respawn = $EnemyRespawnPoint
 var player
 
 func _ready():
 	randomize()
 	var rand_location =  randi() %  player_respawn.get_child_count()
 	spawn_player(player_respawn.get_child(rand_location))
+	
+	var bases = capturable_base_container.get_capturable_bases()
+
+	#ally_ai.initialize(bases)
+	map_ai.initialize(bases, enemy_respawn.get_children())
 
 func spawn_player(location):
 	var playerinst = Player.instantiate()
