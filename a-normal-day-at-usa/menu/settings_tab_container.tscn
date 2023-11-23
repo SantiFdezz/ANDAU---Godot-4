@@ -1,0 +1,151 @@
+[gd_scene load_steps=8 format=3 uid="uid://cdhmmodxlrdai"]
+
+[ext_resource type="FontFile" uid="uid://4owxjany8n7h" path="res://resource/fonts/ARCADECLASSIC.TTF" id="1_xq780"]
+[ext_resource type="PackedScene" uid="uid://dof6xbey4v2mq" path="res://menu/options_menu/window_mode_button.tscn" id="2_7to0c"]
+[ext_resource type="PackedScene" uid="uid://cn2nap68ka0f2" path="res://menu/options_menu/resolution_mode_button.tscn" id="3_36fwt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rsw06"]
+bg_color = Color(0.933333, 0.933333, 0.933333, 1)
+border_width_top = 5
+border_color = Color(0.517647, 0.188235, 0.866667, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iq4ji"]
+bg_color = Color(0.733333, 0.733333, 0.733333, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 10.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_awffg"]
+bg_color = Color(0.627451, 0.627451, 0.627451, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 10.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f708e"]
+bg_color = Color(0.921569, 0.921569, 0.921569, 0.705882)
+
+[node name="Settings_Tab_Container" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 50.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hovered_color = Color(0, 0, 0, 0.831373)
+theme_override_colors/font_unselected_color = Color(0, 0, 0, 0.654902)
+theme_override_fonts/font = ExtResource("1_xq780")
+theme_override_font_sizes/font_size = 23
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_rsw06")
+theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_iq4ji")
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_awffg")
+theme_override_styles/panel = SubResource("StyleBoxFlat_f708e")
+
+[node name="Sound" type="TabBar" parent="TabContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Sound"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Sound/MarginContainer"]
+layout_mode = 2
+
+[node name="ColumnOptions" type="VBoxContainer" parent="TabContainer/Sound/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Sound2" type="Label" parent="TabContainer/Sound/MarginContainer/HBoxContainer/ColumnOptions"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_xq780")
+theme_override_font_sizes/font_size = 22
+text = "Volumen de Musica :"
+
+[node name="Sound3" type="Label" parent="TabContainer/Sound/MarginContainer/HBoxContainer/ColumnOptions"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_xq780")
+theme_override_font_sizes/font_size = 22
+text = "Volumen de Musica :"
+
+[node name="Options" type="VBoxContainer" parent="TabContainer/Sound/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Sound2" type="Label" parent="TabContainer/Sound/MarginContainer/HBoxContainer/Options"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_xq780")
+theme_override_font_sizes/font_size = 22
+text = "Volumen de Musica :"
+
+[node name="Sound3" type="Label" parent="TabContainer/Sound/MarginContainer/HBoxContainer/Options"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_xq780")
+theme_override_font_sizes/font_size = 22
+text = "Volumen de Musica :"
+
+[node name="Video" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Video"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Video/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Video/MarginContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 120
+
+[node name="Window_mode_button" parent="TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_7to0c")]
+layout_mode = 2
+
+[node name="Resolution_Mode_Button" parent="TabContainer/Video/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_36fwt")]
+layout_mode = 2

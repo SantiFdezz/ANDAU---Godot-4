@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://qscjrdo01ein"]
+
+[ext_resource type="Script" path="res://menu/options.gd" id="1_rijt2"]
+[ext_resource type="FontFile" uid="uid://4owxjany8n7h" path="res://resource/fonts/ARCADECLASSIC.TTF" id="2_r6li7"]
+[ext_resource type="Theme" uid="uid://don6v1kt7rqhe" path="res://menu/DefaultButtons.tres" id="3_2dcjn"]
+[ext_resource type="PackedScene" uid="uid://cdhmmodxlrdai" path="res://menu/settings_tab_container.tscn" id="3_3jva7"]
+
+[node name="Options_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rijt2")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = -48
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.678431, 0.121569, 0.0588235, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 8
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_r6li7")
+theme_override_font_sizes/font_size = 49
+text = "OPTIONS"
+horizontal_alignment = 1
+
+[node name="Settings_Tab_Container" parent="MarginContainer/VBoxContainer" instance=ExtResource("3_3jva7")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("3_2dcjn")
+text = "Exit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

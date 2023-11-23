@@ -80,7 +80,3 @@ func hitted():
 		died.emit()
 		$Character.play("dead")
 		queue_free()
-	
-	
-	
-	

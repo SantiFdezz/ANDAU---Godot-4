@@ -19,6 +19,7 @@ var darkfade_custom_data = "dark_animation_fade"
 var player
 
 func _ready():
+	#desactivamos main screen para que no nos tape la vision
 	get_parent().get_node("MainScreen").visible = false;
 	randomize()
 	var rand_location =  randi() %  player_respawn.get_child_count()

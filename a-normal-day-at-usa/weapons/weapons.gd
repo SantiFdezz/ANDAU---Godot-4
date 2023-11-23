@@ -43,7 +43,7 @@ func start_reload():
 
 func _stop_reload():
 	current_ammo = max_ammo
-	get_node("/root/Main/GUI").set_current_ammo(current_ammo)
+	get_node("/root/Main/World/GUI").set_current_ammo(current_ammo)
 
 func on_Player_shoot(body: Player):
 	global_rotation = body.global_rotation
