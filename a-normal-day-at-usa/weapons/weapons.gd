@@ -13,10 +13,11 @@ var current_enemy_ammo: int = max_ammo : set = set_current_enemy_ammo
 @onready var muzzle = $Muzzle
 @onready  var shot_sound = $ShotSound
 @onready  var gun = $Gun
-@onready var player : CharacterBody2D = $"/root/Main/World/Player"
+#@onready var player : CharacterBody2D = $"/root/Main/World/Player"
 var team: int = -1
 var body
 func _ready():
+	
 	pass
 
 func initialize(team: int):
@@ -35,7 +36,7 @@ func set_current_ammo(new_ammo: int):
 		current_ammo = actual_ammo
 		if current_ammo == 0:
 			out_of_ammo.emit()
-		get_node("/root/Main/GUI").set_current_ammo(current_ammo)
+		get_node("/root/Main/World/GUI").set_current_ammo(current_ammo)
 
 func start_reload():
 	animation_player.play("reload")
@@ -44,8 +45,8 @@ func _stop_reload():
 	current_ammo = max_ammo
 	get_node("/root/Main/GUI").set_current_ammo(current_ammo)
 
-func on_Player_shoot():
-	global_rotation = player.global_rotation
+func on_Player_shoot(body: Player):
+	global_rotation = body.global_rotation
 	#si el tiempo se terminó (cooldown), podemos disparar. Instanciamos dentro la bala.
 	if current_ammo != 0  and shot_delay.is_stopped() and bullet_scene != null:
 		var bullet = bullet_scene.instantiate()

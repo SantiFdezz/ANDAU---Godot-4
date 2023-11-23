@@ -55,7 +55,7 @@ func _physics_process(_delta):
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("shoot") && Input.is_action_pressed("aim"):
 		if  not Input.is_action_pressed("run"):
-			weapons.on_Player_shoot()
+			weapons.on_Player_shoot(self)
 			
 	elif Input.is_action_just_released("reload") && Input.is_action_pressed("aim"):
 		weapons.start_reload()
@@ -70,7 +70,7 @@ func hitted():
 	else:
 		#actualizar valor a randi_range(0,55) en hardmode
 		health_stat.status -=20
-	get_node("/root/Main/GUI").set_new_health_value(health_stat.status)
+	get_node("/root/Main/World/GUI").set_new_health_value(health_stat.status)
 	#ANIMACION SANGRE
 	var blood_inst = blood.instantiate()
 	blood_inst.global_position = global_position
