@@ -36,14 +36,15 @@ func set_current_ammo(new_ammo: int):
 		current_ammo = actual_ammo
 		if current_ammo == 0:
 			out_of_ammo.emit()
-		get_node("/root/Main/World/GUI").set_current_ammo(current_ammo)
+		get_parent().get_parent().find_child("GUI").set_current_ammo(current_ammo)
 
 func start_reload():
 	animation_player.play("reload")
 
 func _stop_reload():
 	current_ammo = max_ammo
-	get_node("/root/Main/World/GUI").set_current_ammo(current_ammo)
+	#get_tree().root.get_node("/root/Main/World/GUI").set_current_ammo(current_ammo)
+	get_parent().get_parent().find_child("GUI").set_current_ammo(current_ammo)
 
 func on_Player_shoot(body: Player):
 	global_rotation = body.global_rotation
@@ -66,5 +67,6 @@ func on_shoot():
 		animation_player.play("muzzle_flash")
 		shot_sound.play()
 		shot_delay.start()
+		current_ammo -=1
 		set_current_enemy_ammo(current_ammo)
 

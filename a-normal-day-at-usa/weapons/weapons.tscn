@@ -101,3 +101,4 @@ one_shot = true
 [node name="ShotSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_moo20")
 volume_db = -24.0
+bus = &"Sfx"

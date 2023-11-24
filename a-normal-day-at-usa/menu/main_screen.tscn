@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://1h1ettp7i1ys"]
+[gd_scene load_steps=7 format=3 uid="uid://1h1ettp7i1ys"]
 
 [ext_resource type="Script" path="res://menu/main_screen.gd" id="1_xg7ae"]
 [ext_resource type="Texture2D" uid="uid://bn0sax8oxyuyi" path="res://resource/MainBackground.png" id="2_6uma5"]
 [ext_resource type="FontFile" uid="uid://4owxjany8n7h" path="res://resource/fonts/ARCADECLASSIC.TTF" id="3_5x5nq"]
 [ext_resource type="Theme" uid="uid://don6v1kt7rqhe" path="res://menu/DefaultButtons.tres" id="4_00d3j"]
 [ext_resource type="PackedScene" uid="uid://qscjrdo01ein" path="res://menu/options_main_screen.tscn" id="5_7ppof"]
+[ext_resource type="AudioStream" uid="uid://cf6qxemrfhebc" path="res://resource/sounds/TremLoadingloopl.wav" id="6_xyibr"]
 
 [node name="MainScreen" type="CanvasLayer"]
 script = ExtResource("1_xg7ae")
@@ -112,6 +113,11 @@ anchor_right = 25.05
 anchor_bottom = 15.25
 offset_right = -6.10352e-05
 offset_bottom = -6.10352e-05
+
+[node name="MainMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_xyibr")
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="Main_menu/MarginContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Main_menu/MarginContainer/HBoxContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1ctcqnbni5f6"]
+
+[ext_resource type="PackedScene" uid="uid://kuntplbukgio" path="res://menu/options_menu/music_mode_slider.tscn" id="1_u7x56"]
+[ext_resource type="Script" path="res://menu/options_menu/sfx_mode_slider.gd" id="2_50wcl"]
+
+[node name="sfx_mode_slider" instance=ExtResource("1_u7x56")]
+script = ExtResource("2_50wcl")
+bus_name = "Sfx"
+
+[node name="HBoxContainer" parent="." index="0"]
+layout_mode = 0
+
+[node name="Label" parent="HBoxContainer" index="0"]
+text = "VOLUMEN  DE  EFECTOS :"

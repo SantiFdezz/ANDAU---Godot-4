@@ -23,9 +23,9 @@ func handle_capturable_bases():
 				Team.TeamName.NEUTRAL:
 					return
 			if player_bases == total_bases:
-				get_node("/root/Main").handle_player_win()
+				get_node("/root/Main/World").handle_player_win()
 			elif enemy_bases == total_bases:
-				get_node("/root/Main").handle_player_lost()
+				get_node("/root/Main/World").handle_player_lost()
 
 				
 					

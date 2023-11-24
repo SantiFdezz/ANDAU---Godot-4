@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cdhmmodxlrdai"]
+[gd_scene load_steps=10 format=3 uid="uid://cdhmmodxlrdai"]
 
 [ext_resource type="FontFile" uid="uid://4owxjany8n7h" path="res://resource/fonts/ARCADECLASSIC.TTF" id="1_xq780"]
 [ext_resource type="PackedScene" uid="uid://dof6xbey4v2mq" path="res://menu/options_menu/window_mode_button.tscn" id="2_7to0c"]
+[ext_resource type="PackedScene" uid="uid://kuntplbukgio" path="res://menu/options_menu/music_mode_slider.tscn" id="2_xsi5h"]
 [ext_resource type="PackedScene" uid="uid://cn2nap68ka0f2" path="res://menu/options_menu/resolution_mode_button.tscn" id="3_36fwt"]
+[ext_resource type="PackedScene" uid="uid://b1ctcqnbni5f6" path="res://menu/options_menu/sfx_mode_slider.tscn" id="3_kbdjw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rsw06"]
 bg_color = Color(0.933333, 0.933333, 0.933333, 1)
@@ -80,46 +82,18 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Sound/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/Sound/MarginContainer"]
 layout_mode = 2
 
-[node name="ColumnOptions" type="VBoxContainer" parent="TabContainer/Sound/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Sound/MarginContainer/ScrollContainer"]
 layout_mode = 2
-theme_override_constants/separation = 64
-alignment = 1
+theme_override_constants/separation = 120
 
-[node name="Sound2" type="Label" parent="TabContainer/Sound/MarginContainer/HBoxContainer/ColumnOptions"]
+[node name="music_mode_slider" parent="TabContainer/Sound/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("2_xsi5h")]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_xq780")
-theme_override_font_sizes/font_size = 22
-text = "Volumen de Musica :"
 
-[node name="Sound3" type="Label" parent="TabContainer/Sound/MarginContainer/HBoxContainer/ColumnOptions"]
+[node name="sfx_mode_slider" parent="TabContainer/Sound/MarginContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_kbdjw")]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_xq780")
-theme_override_font_sizes/font_size = 22
-text = "Volumen de Musica :"
-
-[node name="Options" type="VBoxContainer" parent="TabContainer/Sound/MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 64
-alignment = 1
-
-[node name="Sound2" type="Label" parent="TabContainer/Sound/MarginContainer/HBoxContainer/Options"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_xq780")
-theme_override_font_sizes/font_size = 22
-text = "Volumen de Musica :"
-
-[node name="Sound3" type="Label" parent="TabContainer/Sound/MarginContainer/HBoxContainer/Options"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_xq780")
-theme_override_font_sizes/font_size = 22
-text = "Volumen de Musica :"
 
 [node name="Video" type="TabBar" parent="TabContainer"]
 visible = false

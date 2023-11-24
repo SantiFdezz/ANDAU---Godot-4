@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2hvicb6k0xsa"]
+
+[ext_resource type="Script" path="res://menu/pausemenu.gd" id="1_4bb7l"]
+[ext_resource type="FontFile" uid="uid://4owxjany8n7h" path="res://resource/fonts/ARCADECLASSIC.TTF" id="2_bleap"]
+[ext_resource type="Theme" uid="uid://don6v1kt7rqhe" path="res://menu/DefaultButtons.tres" id="3_j02x0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h41cb"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.870588, 0.0627451, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="Pause" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4bb7l")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.372549, 0.372549, 0.372549, 0.294118)
+
+[node name="PauseCenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PauseCenterContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_h41cb")
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseCenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseCenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Label" type="Label" parent="PauseCenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bleap")
+theme_override_font_sizes/font_size = 23
+text = "PAUSE"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PauseCenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ResumeButton" type="Button" parent="PauseCenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_j02x0")
+text = "  RESUME GAME  "
+
+[node name="ExitButton" type="Button" parent="PauseCenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_j02x0")
+text = "Menu  principal"

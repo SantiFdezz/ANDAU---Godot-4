@@ -4,10 +4,12 @@ extends CanvasLayer
 @onready var start_menu = $Main_menu/MarginContainer as MarginContainer
 
 func _ready():
+	$MainMusic.play()
 	options_menu.exit_options_menu.connect(Callable(on_exit_options_pressed))
 
 func _on_play_pressed():
-	get_tree().change_scene_to_file("res://main.tscn")
+	$MainMusic.stop()
+	get_tree().change_scene_to_file("res://zones/world.tscn")
 
 func on_exit_options_pressed():
 	start_menu.visible = true

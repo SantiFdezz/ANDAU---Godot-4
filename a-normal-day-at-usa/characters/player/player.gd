@@ -70,7 +70,8 @@ func hitted():
 	else:
 		#actualizar valor a randi_range(0,55) en hardmode
 		health_stat.status -=20
-	get_node("/root/Main/World/GUI").set_new_health_value(health_stat.status)
+
+	get_parent().get_node("GUI").set_new_health_value(health_stat.status)
 	#ANIMACION SANGRE
 	var blood_inst = blood.instantiate()
 	blood_inst.global_position = global_position
