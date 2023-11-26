@@ -16,8 +16,6 @@ var dead_position : Vector2
 func _ready():
 	$Weapons/Flash.hide()
 	ai.initialize(self, weapon, team.team)
-	weapon.initialize(team.team)
-	
 	
 	
 func rotate_toward(location: Vector2):
@@ -36,10 +34,9 @@ func hitted():
 	blood_inst.global_position = global_position
 	get_tree().get_root().add_child(blood_inst)
 	if health.status <= 0:
+		ai.set_physics_process(false)
 		weapon.hide()
-		weapon.set_process(false) 
-		$Character.hide()
-		$DeadCharacter.play("dead")
+		$Character.play("dead")
 		await get_tree().create_timer(2.0).timeout
 		#emit_signal("died")
 		died.emit()

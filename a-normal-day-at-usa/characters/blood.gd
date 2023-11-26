@@ -2,7 +2,6 @@ extends CPUParticles2D
 var emmiting
 
 func _ready():
-	var actor = get_parent()
 	get_direction_to()
 	emmiting = true
 

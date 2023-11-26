@@ -1,8 +1,6 @@
 extends Node2D
 
 var capturable_bases: Array = []
-
-
 @export var unit : PackedScene = null 
 var respawn_points: Array = []
 @onready var unit_container = $UnitContainer

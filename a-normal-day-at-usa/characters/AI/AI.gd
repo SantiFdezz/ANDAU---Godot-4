@@ -22,6 +22,7 @@ var team: int =-1
 @onready var player: Player
 
 func _ready() -> void:
+	randomize()
 	set_state(State.PATROL)
 
 #Actualizamos lo que tiene que hacer en sus diferentes estados
@@ -32,6 +33,7 @@ func _physics_process(_delta: float) ->void:
 			if not patrol_location_reached:
 				actor.move_and_slide() 
 				actor.rotate_toward(patrol_location)
+				#falta stopear el timer en algun momento
 				if actor.has_reached_position(patrol_location):
 					patrol_location_reached = true
 					velocity = Vector2.ZERO
@@ -42,8 +44,12 @@ func _physics_process(_delta: float) ->void:
 				actor.rotate_toward(target.global_position)
 				actor.move_and_slide()
 				var angle_to_target =  actor.global_position.direction_to(target.global_position).angle()
-				if abs(actor.global_rotation - angle_to_target)< 0.1:
-					weapon.on_shoot()
+				if actor.name != "Boss":
+					if abs(actor.global_rotation - angle_to_target)< 0.1:
+						weapon.on_shoot()
+				else:
+					if abs(actor.global_rotation - angle_to_target)< 0.1:
+						weapon.on_smg_shoot()
 			else:
 				print("Persiguiendo pero, no hay arma/player")
 			#Estado perseguir target, si entra en el collisionshape y es un player irá a buscar al player
@@ -51,10 +57,10 @@ func _physics_process(_delta: float) ->void:
 		_:
 				print('Error: Encontraste un estado de la IA que no debería existir!!')
 
-func initialize(actor: CharacterBody2D, weapon: Weapon, team: int):
-	self.actor = actor
-	self.weapon = weapon
-	self.team = team
+func initialize(new_actor: CharacterBody2D, new_weapon: Weapon, new_team: int):
+	self.actor = new_actor
+	self.weapon = new_weapon
+	self.team = new_team
 
 func set_state(new_state: int):
 	if new_state == current_state:
@@ -97,6 +103,6 @@ func _on_DetectionZoneBodyExited(body: Node) -> void:
 
 
 func _on_weapons_out_of_ammo():
-	weapon.start_reload()
+	weapon.start_reload_enemy()
 
 

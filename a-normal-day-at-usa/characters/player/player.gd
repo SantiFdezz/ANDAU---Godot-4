@@ -16,7 +16,6 @@ var screen_size
 func _ready():
 	screen_size = get_viewport_rect().size
 	$Weapons/Flash.hide()
-	weapons.initialize(team.team)
 		
 func _process(_delta):
 	# inicializamos la rotación del personaje con la posicion en la dirección que apunta el ratón y calcula el ángulo entre el vector resultante y el eje X positivo 
@@ -30,9 +29,9 @@ func _physics_process(_delta):
 	weapons.hide()
 	if Input.is_action_pressed("run"):
 		$Character.play("run")
-		velocity = direction * speed * 2
+		velocity = direction * speed *1.5
 	else:
-		velocity = direction * speed
+		velocity = direction * speed 
 		if Input.is_action_pressed("aim"):
 			$Character.play("aim")
 			weapons.show()
@@ -56,7 +55,6 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("shoot") && Input.is_action_pressed("aim"):
 		if  not Input.is_action_pressed("run"):
 			weapons.on_Player_shoot(self)
-			
 	elif Input.is_action_just_released("reload") && Input.is_action_pressed("aim"):
 		weapons.start_reload()
 func get_team() -> int:
@@ -81,3 +79,11 @@ func hitted():
 		died.emit()
 		$Character.play("dead")
 		queue_free()
+
+func _on_interaction_area_area_entered(area):
+	if area.name == "Bullets":
+		weapons.set_current_magazine(1)
+	elif area.name == "Health":
+		health_stat.status += 50
+		get_parent().get_node("GUI").set_new_health_value(health_stat.status)
+	area.queue_free()

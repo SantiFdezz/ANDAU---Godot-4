@@ -7,8 +7,8 @@
 script = ExtResource("2_50wcl")
 bus_name = "Sfx"
 
-[node name="HBoxContainer" parent="." index="0"]
-layout_mode = 0
-
 [node name="Label" parent="HBoxContainer" index="0"]
 text = "VOLUMEN  DE  EFECTOS :"
+
+[node name="VolumeSlider" parent="HBoxContainer" index="2"]
+value = 0.5

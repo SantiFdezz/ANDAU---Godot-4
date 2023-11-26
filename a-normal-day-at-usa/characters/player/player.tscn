@@ -93,13 +93,10 @@ team = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="InteractionComponents" type="Node2D" parent="."]
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_mask = 2
 
-[node name="InteractionLabel" type="Label" parent="InteractionComponents"]
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="InteractionArea" type="Area2D" parent="InteractionComponents"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionComponents/InteractionArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("CircleShape2D_bsf5m")
+
+[connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]

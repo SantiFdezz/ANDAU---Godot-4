@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://1n5t7dodogt5"]
+
+[ext_resource type="Texture2D" uid="uid://c3nv37ny7xmqt" path="res://resource/objects/ammo-pistol-alt 32px.png" id="2_trgyh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1yhw2"]
+size = Vector2(66, 61)
+
+[node name="Bullets" type="Node2D"]
+
+[node name="Bullets" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Bullets"]
+texture = ExtResource("2_trgyh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bullets"]
+position = Vector2(2, -0.5)
+shape = SubResource("RectangleShape2D_1yhw2")
+debug_color = Color(0.729412, 0.505882, 0, 0.419608)

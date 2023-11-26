@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx7cpl8bescm8"]
+
+[ext_resource type="Texture2D" uid="uid://c0gd67bbm4jgr" path="res://resource/objects/health-red 32px.png" id="1_36diw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b3hqh"]
+size = Vector2(86, 77)
+
+[node name="MedicKit" type="Node2D"]
+
+[node name="Health" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Health"]
+texture = ExtResource("1_36diw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Health"]
+shape = SubResource("RectangleShape2D_b3hqh")
+debug_color = Color(0.729412, 0.505882, 0, 0.419608)
