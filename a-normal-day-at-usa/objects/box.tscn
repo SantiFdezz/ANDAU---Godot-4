@@ -5,8 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80gwj"]
 size = Vector2(54, 54)
 
-[node name="Box" type="RigidBody2D"]
-gravity_scale = 0.0
+[node name="Box" type="CharacterBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_olcyc")

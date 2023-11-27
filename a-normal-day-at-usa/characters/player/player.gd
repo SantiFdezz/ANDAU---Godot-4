@@ -3,8 +3,7 @@ extends CharacterBody2D
 class_name Player
 
 signal player_health_changed(new_health)
-signal died
-@export  var speed = 300
+@export var speed: int
 @export var bullet_scene: PackedScene
  
 @onready var weapons: Node2D = $Weapons as Node2D
@@ -12,7 +11,7 @@ signal died
 @onready var team = $Team
 @onready var blood : PackedScene = preload("res://characters/blood_particles.tscn")
 var screen_size
-
+var player_died: bool = false
 func _ready():
 	screen_size = get_viewport_rect().size
 	$Weapons/Flash.hide()
@@ -22,16 +21,16 @@ func _process(_delta):
 	global_rotation = global_position.direction_to(get_global_mouse_position()).angle() 
 	
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	# Inicializamos la dirección del personaje, el metodo get_vector() toma varios parámetros correspondientes a las teclas mapeadas y genera un vector de dirección.
 	var direction = Input.get_vector("move_left","move_right","move_up","move_down")
 	# cambiamos la animación según la posición  y velocidad requerida dependiendo de teclas presionadas
 	weapons.hide()
 	if Input.is_action_pressed("run"):
 		$Character.play("run")
-		velocity = direction * speed *1.5
+		velocity = direction * speed *1.5 * delta
 	else:
-		velocity = direction * speed 
+		velocity = direction * speed * delta
 		if Input.is_action_pressed("aim"):
 			$Character.play("aim")
 			weapons.show()
@@ -76,8 +75,10 @@ func hitted():
 	get_tree().get_root().add_child(blood_inst)
 	#MUERTE PLAYER
 	if health_stat.status <= 0:
-		died.emit()
 		$Character.play("dead")
+		await get_tree().create_timer(1.0).timeout
+		player_died = true
+		get_parent().set_player_died(player_died)
 		queue_free()
 
 func _on_interaction_area_area_entered(area):

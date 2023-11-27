@@ -72,7 +72,7 @@ radius = 46.1736
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_r0x38")
-speed = 200
+speed = 15000
 bullet_scene = ExtResource("2_gpguy")
 
 [node name="Character" type="AnimatedSprite2D" parent="."]

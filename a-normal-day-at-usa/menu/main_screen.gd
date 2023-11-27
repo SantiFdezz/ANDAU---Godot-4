@@ -3,8 +3,9 @@ extends CanvasLayer
 @onready var options_menu = $Main_menu/Options_menu as OptionsMenu
 @onready var start_menu = $Main_menu/MarginContainer as MarginContainer
 var world: Node2D 
-
+var user_prefs: UserPreferences
 func _ready():
+	user_prefs = SettingsSignalBus.load_or_create()
 	$MainMusic.play()
 	options_menu.exit_options_menu.connect(Callable(on_exit_options_pressed))
 	

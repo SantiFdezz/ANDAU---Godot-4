@@ -2,13 +2,18 @@ extends CanvasLayer
 
 @onready var title = $PanelContainer/MarginContainer/Rows/Title
 
-func set_title(win: bool):
+func _ready():
+	$".".visible = false
+
+func set_title(win: bool, player_bases: int):
 	if win:
-		title.text = "YOU WIN!!"
+		title.text = "GANASTE!!  "+"+"+str(player_bases)+" bases! "
 		title.modulate = Color.GREEN
 	else:
-		title.text = "YOU LOSE :("
+		title.text = "PERDISTE :("
 		title.modulate = Color.RED
+	$".".visible = true
+		
 func _on_quit_pressed():
 	get_tree().quit()
 

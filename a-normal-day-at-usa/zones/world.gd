@@ -11,7 +11,6 @@ signal game_paused(is_paused)
 @onready var enemy_respawn = $EnemyRespawnPoint
 const Player = preload("res://characters/player/player.tscn")
 #const PauseScreen = preload("res://menu/pause_menu.tscn") as PackedScene
-const GameOver = preload("res://menu/game_over.tscn")
 #const Pause = preload("res://menu/PauseMenu.tscn")
 var roof_layer  = 5
 var underground_layer = -5
@@ -19,6 +18,8 @@ var faded : bool = false
 var darkfade_custom_data = "dark_animation_fade"
 var is_paused = false
 var player
+#var player_died :bool = false : set = set_player_died
+@export var player_died : bool = false : set = set_player_died
 func unpause():
 	$GameTimer.start()
 	$Pause.hide()
@@ -34,29 +35,19 @@ func _ready():
 	randomize()
 	var rand_location =  randi() %  player_respawn.get_child_count()
 	spawn_player(player_respawn.get_child(rand_location))
-	
 	var bases = capturable_base_container.get_capturable_bases()
 	#ally_ai.initialize(bases)
 	map_ai.initialize(bases, enemy_respawn.get_children())
 
-
-
+func set_player_died(new_bool: bool):
+	player_died = new_bool
+	
 func _process(_delta):
-	if Input.is_action_just_pressed("pause"): #and not $GameTimer.is_stopped():
-		is_paused = !is_paused
-		get_tree().paused = is_paused
-		$PauseMenu/Pause._on_game_paused(is_paused)
-		$PauseMenu/Pause.exit_game.connect(unpause)
-		#get_tree().paused = not get_tree().paused
-		#$Pause.visible = not $Pause/PauseCenterContainer.visible
-		$GameTimer.stop()
-	elif $GameTimer.is_stopped():
-		pass
-	else:
-		
-		if player != null:
-			set_roof()
-
+	var bases = capturable_base_container.get_capturable_bases()
+	if player_died == false and bases.size() != 0:
+		check_roof()
+	elif player_died == true or bases.size() == 0 or $GameTimer.is_stopped():
+		capturable_base_container.handle_capturable_bases()
 
 func spawn_player(location):
 	var playerinst = Player.instantiate()
@@ -65,7 +56,7 @@ func spawn_player(location):
 	$GUI.set_player(playerinst)
 	self.player = playerinst
 
-func set_roof():
+func check_roof():
 	var p : Vector2 = player.global_position
 	var tile_position : Vector2i = tile_map.local_to_map(p)
 	var  tile_data : TileData = tile_map.get_cell_tile_data(roof_layer, tile_position)
@@ -80,19 +71,14 @@ func set_roof():
 		tile_map.set_layer_z_index(roof_layer, roof_layer)
 		faded = false
 		$DoorShutted.play()
-	
-func handle_player_win():
-	var game_over_inst = GameOver.instantiate()
-	add_child(game_over_inst)
-	game_over_inst.set_title(true)
-	get_tree().paused = true
-	
-	
-func handle_player_lost():
-	var game_over_inst = GameOver.instantiate()
-	add_child(game_over_inst)
-	game_over_inst.set_title(false)
-	get_tree().paused = true 
 
-func _on_game_timer_timeout():
-	capturable_base_container.handle_capturable_bases()
+
+func handle_player_win(player_bases):
+	get_tree().paused = true
+	find_child("GameOver").set_title(true, player_bases)
+
+	
+	
+func handle_player_lost(player_bases):
+	get_tree().paused = true
+	find_child("GameOver").set_title(false, player_bases)

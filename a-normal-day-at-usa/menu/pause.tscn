@@ -17,6 +17,7 @@ corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
 [node name="Pause" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,7 +35,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.372549, 0.372549, 0.372549, 0.294118)
 
-[node name="PauseCenterContainer" type="CenterContainer" parent="."]
+[node name="PauseCenterContainer" type="CenterContainer" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,39 +43,42 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="PauseCenterContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="ColorRect/PauseCenterContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_h41cb")
 
-[node name="MarginContainer" type="MarginContainer" parent="PauseCenterContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/PauseCenterContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PauseCenterContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/PauseCenterContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 15
 alignment = 1
 
-[node name="Label" type="Label" parent="PauseCenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="ColorRect/PauseCenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_bleap")
 theme_override_font_sizes/font_size = 23
 text = "PAUSE"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="PauseCenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="ColorRect/PauseCenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="ResumeButton" type="Button" parent="PauseCenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ResumeButton" type="Button" parent="ColorRect/PauseCenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_j02x0")
 text = "  RESUME GAME  "
 
-[node name="ExitButton" type="Button" parent="PauseCenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MainButton" type="Button" parent="ColorRect/PauseCenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_j02x0")
 text = "Menu  principal"
+
+[connection signal="pressed" from="ColorRect/PauseCenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="ColorRect/PauseCenterContainer/PanelContainer/MarginContainer/VBoxContainer/MainButton" to="." method="_on_main_button_pressed"]

@@ -4,9 +4,11 @@ extends Control
 @export var bus_name: String = "Sfx"
 
 @export var bus_index: int
-
+var user_prefs: UserPreferences
 func _ready() -> void:
-	bus_index = AudioServer.get_bus_index(bus_name)
+	user_prefs = SettingsSignalBus.load_or_create()
+	$HBoxContainer/VolumeSlider.value = SettingsSignalBus.settings["sfx_volume"]
+	#bus_index = AudioServer.get_bus_index(bus_name)
 
 
 func _on_volume_slider_value_changed(value):
@@ -14,3 +16,4 @@ func _on_volume_slider_value_changed(value):
 		bus_index,
 		linear_to_db(value)
 	)
+	SettingsSignalBus.emit_on_sfx_changed(value)

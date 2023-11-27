@@ -1,6 +1,8 @@
 extends Control
 
+
 @onready var option_menu = $HBoxContainer/OptionButton as OptionButton
+var user_prefs: UserPreferences
 
 const WINDOW_MODE_ARRAY: Array[String]= [
 	"Pantalla completa",
@@ -10,7 +12,10 @@ const WINDOW_MODE_ARRAY: Array[String]= [
 ]
 
 func _ready():
+	user_prefs = SettingsSignalBus.load_or_create()
 	add_window_mode_items()
+	$HBoxContainer/OptionButton.selected = SettingsSignalBus.settings["window_mode_index"]
+	_on_option_button_item_selected($HBoxContainer/OptionButton.selected)
 
 
 func add_window_mode_items() -> void:
@@ -30,3 +35,4 @@ func _on_option_button_item_selected(index: int):
 		3:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
+	SettingsSignalBus.emit_on_window_changed(index)

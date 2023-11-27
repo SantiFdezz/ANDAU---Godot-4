@@ -3,8 +3,8 @@ extends CanvasLayer
 @onready var player: Player
 
 
-func set_player(player: Player):
-	self.player = player
+func set_player(new_player: Player):
+	self.player = new_player
 
 	set_new_health_value(player.health_stat.status)
 	set_current_ammo(player.weapons.current_ammo)
