@@ -15,6 +15,7 @@ func save_settings():
 	user_prefs.resolution_index = settings["resolution_index"]
 	user_prefs.music_volume = settings["music_volume"]
 	user_prefs.sfx_volume = settings["sfx_volume"]
+	user_prefs.username = settings["username"]
 	ResourceSaver.save(user_prefs, "user://user_prefs.tres")
 
 func load_or_create():
@@ -24,25 +25,26 @@ func load_or_create():
 		settings["resolution_index"] = user_prefs.resolution_index
 		settings["music_volume"] = user_prefs.music_volume
 		settings["sfx_volume"] = user_prefs.sfx_volume
+		settings["username"] = user_prefs.username
 	else:
 		save_settings()
 
 func emit_on_window_changed(index: int):
 	settings["window_mode_index"] = index
 	save_settings()
-	#on_window_changed.emit(index)
 
 func emit_on_resolution_changed(index: int):
 	settings["resolution_index"] = index
 	save_settings()
-	#on_resolution_changed.emit(index)
-	
+
 func emit_on_sfx_changed(value: float):
 	settings["sfx_volume"] = value
 	save_settings()
-	#on_sfx_changed.emit(value)
-	
+
 func emit_on_music_changed(value: float):
 	settings["music_volume"] = value
 	save_settings()
-	#n_music_changed.emit(value)
+
+func emit_on_username_changed(username: String):
+	settings["username"] = username
+	save_settings()

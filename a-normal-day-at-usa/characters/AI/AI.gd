@@ -45,15 +45,13 @@ func _physics_process(_delta: float) ->void:
 				actor.move_and_slide()
 				var angle_to_target =  actor.global_position.direction_to(target.global_position).angle()
 				if actor.name != "Boss":
-					if abs(actor.global_rotation - angle_to_target)< 0.1:
+					if abs(actor.global_rotation - angle_to_target)< 0.35:
 						weapon.on_shoot()
 				else:
-					if abs(actor.global_rotation - angle_to_target)< 0.1:
+					if abs(actor.global_rotation - angle_to_target)< 0.35:
 						weapon.on_smg_shoot()
 			else:
 				print("Persiguiendo pero, no hay arma/player")
-			#Estado perseguir target, si entra en el collisionshape y es un player irá a buscar al player
-
 		_:
 				print('Error: Encontraste un estado de la IA que no debería existir!!')
 
@@ -67,7 +65,7 @@ func set_state(new_state: int):
 		pass
 	if new_state == State.PATROL:
 		origin = global_position
-		$PatrolTimer.start()
+		$PatrolTimer.autostart = true
 		patrol_location_reached = true
 	elif new_state == State.ENGAGE:
 		$PatrolTimer.stop()
@@ -95,11 +93,9 @@ func _on_DetectionZoneBodyEntered(body: Node) ->void:
 
 func _on_DetectionZoneBodyExited(body: Node) -> void:
 	if target and body == target:
-		print("la liaste  antes")
 		set_state(State.PATROL)
 		if $PatrolTimer == null:
-			print("la liaste amigo")
-		target = null
+			target = null
 
 
 func _on_weapons_out_of_ammo():

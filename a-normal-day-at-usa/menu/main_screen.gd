@@ -5,6 +5,7 @@ extends CanvasLayer
 var world: Node2D 
 var user_prefs: UserPreferences
 func _ready():
+	get_tree().paused = false
 	user_prefs = SettingsSignalBus.load_or_create()
 	$MainMusic.play()
 	options_menu.exit_options_menu.connect(Callable(on_exit_options_pressed))

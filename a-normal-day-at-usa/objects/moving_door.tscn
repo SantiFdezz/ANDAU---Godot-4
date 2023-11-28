@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bn8dq3xje8syq"]
 
-[ext_resource type="Script" path="res://MovingDoor.gd" id="1_isau4"]
+[ext_resource type="Script" path="res://objects/MovingDoor.gd" id="1_isau4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7b4x"]
 size = Vector2(234, 20)

@@ -3,8 +3,6 @@ extends Control
 class_name Pause
 
 
-func _ready():
-	print("llegué")
 var _is_paused:bool = false:
 	set(value):
 		_is_paused = value

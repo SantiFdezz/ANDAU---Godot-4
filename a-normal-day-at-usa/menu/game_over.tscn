@@ -49,13 +49,6 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="Start" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3_stuxx")
-theme_override_fonts/font = ExtResource("2_n2hp7")
-theme_override_font_sizes/font_size = 30
-text = "  START AGAIN  "
-
 [node name="Main" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_stuxx")
@@ -69,6 +62,5 @@ theme_override_fonts/font = ExtResource("2_n2hp7")
 theme_override_font_sizes/font_size = 30
 text = "QUIT"
 
-[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Main" to="." method="_on_main_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

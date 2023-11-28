@@ -14,7 +14,12 @@ team = 2
 [node name="UnitContainer" type="Node2D" parent="."]
 
 [node name="RespawnTimer" type="Timer" parent="."]
-wait_time = 120.0
+wait_time = 240.0
+one_shot = true
+
+[node name="BossTimer" type="Timer" parent="."]
+wait_time = 180.0
 one_shot = true
 
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]
+[connection signal="timeout" from="BossTimer" to="." method="_on_boss_timer_timeout"]

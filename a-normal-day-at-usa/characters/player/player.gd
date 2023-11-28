@@ -75,10 +75,9 @@ func hitted():
 	get_tree().get_root().add_child(blood_inst)
 	#MUERTE PLAYER
 	if health_stat.status <= 0:
-		$Character.play("dead")
-		await get_tree().create_timer(1.0).timeout
 		player_died = true
 		get_parent().set_player_died(player_died)
+		get_parent().find_child("CapturableBaseContainer").handle_capturable_bases()
 		queue_free()
 
 func _on_interaction_area_area_entered(area):
