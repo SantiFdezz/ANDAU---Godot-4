@@ -75,7 +75,7 @@ func set_player_kills():
 func handle_player_win(username: String, player_bases: int):
 	if not game_over:
 		game_over = true
-		var score = (player_bases+1) * self.player_kills
+		var score = ((player_bases+1) * self.player_kills)
 		send_post_new_score(username, score)
 		#get_tree().paused = true
 		find_child("GameOver").set_title(true, player_bases)
