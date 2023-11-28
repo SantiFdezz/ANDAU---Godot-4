@@ -1,8 +1,6 @@
 # ANDAU---Godot-4
 A Normal Day At USA | Top-Down Shooter 2D
 
-![Game Logo](blob:https://web.whatsapp.com/c3262a7c-ca01-4d45-86c5-4787600559c6)
-
 "A Normal Day at USA" is a top-down 2D shooter created in Godot 4. Experience thrilling gameplay with various key combinations:
 
 - **Right Click:** Aim
