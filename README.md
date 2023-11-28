@@ -33,29 +33,5 @@ Navigate the intense battlefield, eliminate threats, and strategically capture f
 - **Reload:** Press 'R' to reload your weapon, but only when you find ammunition on the ground.
 - **Block & Run:** Utilize the Space key to block incoming attacks and Shift key to sprint for a quick escape.
 
-## Getting Started
-
-Follow these steps to set up the game locally:
-
-1. Ensure [Godot Engine 4](https://godotengine.org/) is installed.
-2. Clone this repository.
-3. Open the project in Godot Engine.
-4. Customize and enhance your gaming experience!
-
-## Feedback and Contributions
-
-We welcome feedback, bug reports, and contributions. If you have suggestions or encounter issues, please:
-
-- Join our [Discord Community](link_to_discord) for discussions.
-- Check the [Issues](link_to_issues) section to see if your concern is already addressed.
-- File a new issue [here](link_to_new_issue) if it's not reported yet.
-
-## Credits
-
-This project draws inspiration from [shapez.io](link_to_shapez_io), an open-source base-building game.
-
-## Acknowledgments
-
-Special thanks to the open-source community for providing valuable resources and support.
 
 Happy gaming!
