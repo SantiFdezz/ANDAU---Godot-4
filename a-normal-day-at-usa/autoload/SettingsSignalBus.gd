@@ -4,7 +4,8 @@ var settings = {
 	"window_mode_index": 0,
 	"resolution_index": 0,
 	"music_volume": 0.5,
-	"sfx_volume": 0.5
+	"sfx_volume": 0.5,
+	"username": "Addam"
 }
 func _ready():
 	load_or_create()
