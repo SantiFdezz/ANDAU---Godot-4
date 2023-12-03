@@ -1,35 +1,52 @@
-# ANDAU---Godot-4
-A Normal Day At USA | Top-Down Shooter 2D
+# ANDAU - Godot 4
+## A Normal Day in the USA | Top-Down 2D Shooter
 
-"A Normal Day at USA" is a top-down 2D shooter created in Godot 4. Experience thrilling gameplay with various key combinations:
+**Description:**
 
+"A Normal Day in the USA" is an engaging top-down 2D shooter developed in Godot 4. Experience an adrenaline-pumping gameplay with intuitive controls and diverse mechanics.
+
+**Controls:**
 - **Right Click:** Aim
 - **Left Click & Right Click (pressed):** Fire
 - **W:** Move Forward
 - **A:** Move Left
 - **S:** Move Backward
 - **D:** Move Right
-- **R:** Reload (available when ammunition is found on the ground)
+- **R:** Reload (when ammunition is found)
 - **Space:** Block
 - **Shift:** Run
 
-## Game Objective
+**Game Objective:**
 
-**"A Normal Day at USA"** revolves around a combination of shooting and capture the flag mechanics. Your victory is achieved by successfully collecting all the flags scattered across the map. In each game session, two distinct types of enemies pose challenges:
+Embark on a thrilling adventure blending shooting and capture-the-flag mechanics. To secure victory, successfully collect all 5 flags scattered across the map within a 10-second timer for each flag. Face two types of enemies:
 
 1. **Military Enemies:**
-   - Armed with pistols, these foes will engage you in direct combat.
+   - Armed with pistols, engage in direct combat.
 
 2. **Boss Enemies:**
-   - As enemies are defeated and time is running out, powerful bosses equipped with automatic weapons will start spawning.
+   - Powerful bosses with automatic weapons spawn as time elapses.
 
-Navigate the intense battlefield, eliminate threats, and strategically capture flags to secure your triumph in this action-packed game. Are you ready for the challenge?
-## Gameplay Instructions
+Navigate the intense battlefield, eliminate threats, and strategically capture flags to triumph in this action-packed game.
 
-- **Aim & Shoot:** Use the right mouse button to aim and left/right mouse buttons (pressed) to fire at enemies.
-- **Movement:** Navigate through the game world using the W, A, S, and D keys.
-- **Reload:** Press 'R' to reload your weapon, but only when you find ammunition on the ground.
-- **Block & Run:** Utilize the Space key to block incoming attacks and Shift key to sprint for a quick escape.
+**Gameplay Instructions:**
+- **Aim & Shoot:** Right-click to aim, left/right-click (pressed) to fire.
+- **Movement:** Use W, A, S, and D to navigate.
+- **Reload:** Press 'R' when ammunition is found.
+- **Block & Run:** Space to block attacks, Shift to sprint.
 
+**Setting Your Username:**
+- Before diving into the action, set your username in the settings menu to lead the scoreboard!
 
-Happy gaming!
+**Map Details:**
+- **Collectibles:** Find medic kits and bullets on the ground. Medic kits auto-heal; use 'R' for bullets.
+- **Animated Objects:** A bunker on the top-right opens when you're close, providing safety.
+- **Locations:** Explore 6 houses, an abandoned farm, and a military advance post.
+
+**Installation:**
+1. Clone the repository.
+2. Open in Godot 4.
+3. Set your username in the settings.
+4. Enjoy the game!
+
+**Happy Gaming!**
+
